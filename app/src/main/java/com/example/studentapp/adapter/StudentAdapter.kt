@@ -1,7 +1,6 @@
 package com.example.studentapp.adapter
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.studentapp.R
 import com.example.studentapp.domain.Student
-import com.example.studentapp.utils.MAIN
 
 class StudentAdapter(private val context: Context): Adapter<StudentAdapter.StudentViewHolder>(){
 
