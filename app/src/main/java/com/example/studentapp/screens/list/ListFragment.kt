@@ -35,7 +35,7 @@ class ListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         viewModel.initDb()
-        studentAdapter = StudentAdapter()
+        studentAdapter = StudentAdapter(requireContext())
         setupToolbar()
 
         with(binding.rvStudent) {
@@ -52,6 +52,12 @@ class ListFragment : Fragment() {
                     bundle.putSerializable(STUDENT_KEY, it)
 
                     findNavController().navigate(R.id.action_listFragment_to_editFragment, bundle)
+                }
+
+                studentAdapter.onStatusChangeListener = { student: Student, i: Int ->
+
+                    student.status = i
+                    viewModel.editStudent(student)
                 }
 
                 binding.fabSend.setOnClickListener {
