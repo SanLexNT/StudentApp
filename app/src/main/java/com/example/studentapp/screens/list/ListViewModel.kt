@@ -25,4 +25,10 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         return repository.getStudents()
     }
 
+    fun editStudent(student: Student){
+        viewModelScope.launch {
+            repository.updateStudent(student)
+        }
+    }
+
 }

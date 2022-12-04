@@ -6,6 +6,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -13,14 +15,15 @@ import com.example.studentapp.R
 import com.example.studentapp.domain.Student
 import com.example.studentapp.utils.MAIN
 
-class StudentAdapter: Adapter<StudentAdapter.StudentViewHolder>(){
+class StudentAdapter(private val context: Context): Adapter<StudentAdapter.StudentViewHolder>(){
 
     private var students = emptyList<Student>()
     var onClickListener : ((student: Student) -> Unit) ?= null
+    var onStatusChangeListener: ((student: Student, spinnerPosition: Int) -> Unit) ?= null
 
     class StudentViewHolder(view: View) : ViewHolder(view){
         val student: TextView = view.findViewById(R.id.tv_student)
-        val status: TextView = view.findViewById(R.id.tv_status)
+        val status: AutoCompleteTextView = view.findViewById(R.id.statusAc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -32,10 +35,22 @@ class StudentAdapter: Adapter<StudentAdapter.StudentViewHolder>(){
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student = students[position]
         holder.student.text = "${student.surname} ${student.name}"
-        holder.status.text = MAIN.resources.getStringArray(R.array.status)[student.status]
+        holder.status.setText(context.resources.getStringArray(R.array.status)[student.status])
 
-        holder.itemView.setOnClickListener {
+        val adapter = ArrayAdapter(context, R.layout.dropdown_item,
+            context.resources.getStringArray(R.array.status))
+        holder.status.setAdapter(adapter)
+
+        holder.itemView.setOnLongClickListener {
             onClickListener?.invoke(student)
+            true
+        }
+
+        holder.status.setOnItemClickListener { _, _, i, _ ->
+
+            onStatusChangeListener?.invoke(student, i)
+            notifyItemChanged(position)
+            holder.status.clearFocus()
         }
 
     }
