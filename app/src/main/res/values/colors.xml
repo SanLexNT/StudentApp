@@ -10,4 +10,5 @@
 
     <color name="main_color">#3F51B5</color>
     <color name="status_color">#3949AB</color>
+    <color name="item_color">#7986CB</color>
 </resources>
