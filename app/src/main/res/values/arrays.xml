@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="status">
+        <item>Присутствует</item>
+        <item>Прогул</item>
+        <item>Больничный</item>
+        <item>Заявление</item>
+    </string-array>
+</resources>
