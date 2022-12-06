@@ -9,4 +9,8 @@
     <string name="hint_status">Статус</string>
     <string name="error_text_fields">Все поля должны быть введены</string>
     <string name="edit">Изменить</string>
+    <string name="about_app">О приложении</string>
+    <string name="author_app">Автор: Бацуля Алексей</string>
+    <string name="name_app">Приложение: Студенты</string>
+    <string name="version_app">Версия: 0.0.2 Beta</string>
 </resources>

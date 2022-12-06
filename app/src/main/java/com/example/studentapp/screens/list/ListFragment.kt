@@ -89,6 +89,11 @@ class ListFragment : Fragment() {
                             }.show()
                     }
                 }
+
+                binding.fabInfo.setOnClickListener {
+                    findNavController().navigate(R.id.action_listFragment_to_infoFragment)
+                }
+
             }
         }
     }
