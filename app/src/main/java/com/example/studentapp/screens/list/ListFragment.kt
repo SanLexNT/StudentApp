@@ -90,8 +90,8 @@ class ListFragment : Fragment() {
                     }
                 }
 
-                binding.fabInfo.setOnClickListener {
-                    findNavController().navigate(R.id.action_listFragment_to_infoFragment)
+                binding.fabAdd.setOnClickListener {
+                    findNavController().navigate(R.id.action_listFragment_to_addFragment)
                 }
 
             }
@@ -104,8 +104,8 @@ class ListFragment : Fragment() {
 
             this.setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.item_add -> {
-                        findNavController().navigate(R.id.action_listFragment_to_addFragment)
+                    R.id.item_info -> {
+                        findNavController().navigate(R.id.action_listFragment_to_infoFragment)
                     }
                 }
                 true
