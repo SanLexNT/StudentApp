@@ -10,5 +10,6 @@
     <string name="about_app">О приложении</string>
     <string name="author_app">Автор: Бацуля Алексей</string>
     <string name="name_app">Приложение: Студенты</string>
-    <string name="version_app">Версия: 0.1.2 Beta</string>
+    <string name="version_app">Версия: 0.1.3 Beta</string>
+    <string name="no_list_title">Список пуст</string>
 </resources>

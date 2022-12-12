@@ -40,10 +40,11 @@ class ListFragment : Fragment() {
 
         with(binding.rvStudent) {
 
-            this.adapter = studentAdapter
+            adapter = studentAdapter
 
             viewModel.getStudents().observe(viewLifecycleOwner) { students ->
 
+                setUpScreen(students)
                 studentAdapter.setList(students)
 
                 studentAdapter.onClickListener = {
@@ -97,6 +98,17 @@ class ListFragment : Fragment() {
             }
         }
     }
+
+    private fun setUpScreen(students: List<Student>?) {
+        if(students?.isNotEmpty() == true){
+            binding.rvStudent.visibility = View.VISIBLE
+            binding.llNoStudent.visibility = View.INVISIBLE
+        } else{
+            binding.rvStudent.visibility = View.INVISIBLE
+            binding.llNoStudent.visibility = View.VISIBLE
+        }
+    }
+
 
     private fun setupToolbar() {
 
