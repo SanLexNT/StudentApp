@@ -17,65 +17,14 @@
             android:background="@color/main_color"
             app:title="@string/add"
             app:titleTextColor="@color/white"
-            app:menu="@menu/menu_student"/>
+            app:menu="@menu/menu_add"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <include android:id="@+id/content_container"
         android:layout_height="match_parent"
-        android:padding="@dimen/default_margin"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_surname"
-            android:layout_margin="@dimen/small_margin"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/surnameEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_name"
-            android:layout_margin="@dimen/small_margin"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:autofillHints="name"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tilStatus"
-            android:layout_margin="@dimen/small_margin"
-            android:hint="@string/hint_status"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/statusAc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    </LinearLayout>
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        layout="@layout/student_layout"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

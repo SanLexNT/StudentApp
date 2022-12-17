@@ -48,17 +48,17 @@ class AddFragment : Fragment() {
 
         var statusId = 0
 
-        binding.apply {
+        binding.contentContainer.apply {
 
             statusAc.setOnItemClickListener { adapterView, view, i, l ->
                 statusId = i
             }
 
-            toolbarAdd.setOnMenuItemClickListener {
+            binding.toolbarAdd.setOnMenuItemClickListener {
                 if(it.itemId == R.id.item_done){
-                    if(checkInputs(surnameEt.text.toString(), nameEt.toString())){
-                        val surname = surnameEt.text.toString()
-                        val name = nameEt.text.toString()
+                    val surname = surnameEt.text.toString()
+                    val name = nameEt.text.toString()
+                    if(checkInputs(surname, name)){
                         val student = Student(surname = surname, name = name, status = statusId)
                         viewModel.addStudent(student)
                         findNavController().popBackStack()
@@ -85,7 +85,7 @@ class AddFragment : Fragment() {
     private fun setupStatusField(){
         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,
             resources.getStringArray(R.array.status))
-        binding.statusAc.setAdapter(adapter)
+        binding.contentContainer.statusAc.setAdapter(adapter)
     }
 
     private fun checkInputs(surname: String, name: String) : Boolean{

@@ -38,21 +38,23 @@ class EditFragment : Fragment() {
         viewModel = ViewModelProvider(this)[EditViewModel::class.java]
         viewModel.initDb()
 
-        binding.apply {
-            surnameEtEdit.setText(student.surname)
-            nameEtEdit.setText(student.name)
+        binding.contentContainer.apply {
+            surnameEt.setText(student.surname)
+            nameEt.setText(student.name)
             statusAc.setText(resources.getStringArray(R.array.status)[student.status])
 
             setupStatusField()
 
-            toolbarEdit.setOnMenuItemClickListener {
+            binding.toolbarEdit.setOnMenuItemClickListener {
 
 
                 when(it.itemId){
                     R.id.item_done ->{
-                        if(checkInputs(surnameEtEdit.text.toString(), nameEtEdit.toString())){
-                            student.surname = surnameEtEdit.text.toString()
-                            student.name = nameEtEdit.text.toString()
+                        val surname = surnameEt.text.toString()
+                        val name = nameEt.toString()
+                        if(checkInputs(surname, name)){
+                            student.surname = surname
+                            student.name = name
 
                             viewModel.editStudent(student)
                             findNavController().popBackStack()
@@ -87,7 +89,7 @@ class EditFragment : Fragment() {
     private fun setupStatusField(){
         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,
             resources.getStringArray(R.array.status))
-        binding.statusAc.setAdapter(adapter)
+        binding.contentContainer.statusAc.setAdapter(adapter)
     }
 
     private fun checkInputs(surname: String, name: String) : Boolean{
