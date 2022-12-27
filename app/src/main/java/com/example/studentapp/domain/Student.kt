@@ -17,6 +17,6 @@ data class Student(
     var name: String,
 
     @ColumnInfo
-    var status: Int = 0,
+    var status: String,
 
 ) : java.io.Serializable

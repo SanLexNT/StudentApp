@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val context = application
-    private lateinit var repository: StudentRepository
+    private var repository: StudentRepository
 
-    fun initDb(){
+    init {
         val dao = StudentDatabase.getInstance(context).getDao()
         repository = StudentRepositoryImpl(dao)
     }

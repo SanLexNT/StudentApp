@@ -1,8 +1,12 @@
 package com.example.studentapp.screens.edit
 
+import android.app.AlertDialog
 import android.app.Application
+import android.content.Context
+import android.content.DialogInterface
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.studentapp.R
 import com.example.studentapp.domain.Student
 import com.example.studentapp.domain.database.StudentDatabase
 import com.example.studentapp.domain.repository.StudentRepository
@@ -30,4 +34,5 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
             repository.deleteStudent(student)
         }
     }
+
 }

@@ -1,15 +1,24 @@
 <resources>
     <string name="app_name">Студенты</string>
     <string name="send_report">Отправить отчет</string>
-    <string name="add">Добавить</string>
     <string name="hint_surname">Фамилия</string>
     <string name="hint_name">Имя</string>
     <string name="hint_status">Статус</string>
     <string name="error_text_fields">Все поля должны быть введены</string>
-    <string name="edit">Изменить</string>
     <string name="about_app">О приложении</string>
     <string name="author_app">Автор: Бацуля Алексей</string>
     <string name="name_app">Приложение: Студенты</string>
-    <string name="version_app">Версия: 0.2.0 Beta</string>
+    <string name="version_app">Версия: 0.3.0 Beta</string>
     <string name="no_list_title">Список пуст</string>
+    <string name="add_student">Добавить студента</string>
+    <string name="edit_student">Изменить студента</string>
+    <string name="delete_student">Удалить студента</string>
+    <string name="save">Сохранить</string>
+    <string name="toast_student_edit">Студент изменен</string>
+    <string name="toast_student_delete">Студент удален</string>
+    <string name="student_add">Студент добавлен</string>
+    <string name="alert_dialog_title">Сообщение</string>
+    <string name="delete_student_question">Хотите удалить студента?</string>
+    <string name="text_yes">Да</string>
+    <string name="text_no">Нет</string>
 </resources>

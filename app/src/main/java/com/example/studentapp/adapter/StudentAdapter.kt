@@ -33,7 +33,7 @@ class StudentAdapter(private val context: Context): Adapter<StudentAdapter.Stude
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student = students[position]
         holder.student.text = "${student.surname} ${student.name}"
-        holder.status.setText(context.resources.getStringArray(R.array.status)[student.status])
+        holder.status.setText(student.status)
 
         val adapter = ArrayAdapter(context, R.layout.dropdown_item,
             context.resources.getStringArray(R.array.status))

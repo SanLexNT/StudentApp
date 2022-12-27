@@ -11,25 +11,9 @@
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_listFragment_to_addFragment"
-            app:destination="@id/addFragment" />
-        <action
-            android:id="@+id/action_listFragment_to_editFragment"
-            app:destination="@id/editFragment" />
-        <action
             android:id="@+id/action_listFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/addFragment"
-        android:name="com.example.studentapp.screens.add.AddFragment"
-        android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="com.example.studentapp.screens.edit.EditFragment"
-        android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" />
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.studentapp.screens.info.InfoFragment"

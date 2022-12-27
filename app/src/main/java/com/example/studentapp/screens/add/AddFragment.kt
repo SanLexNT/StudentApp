@@ -1,22 +1,19 @@
 package com.example.studentapp.screens.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.studentapp.R
 import com.example.studentapp.databinding.FragmentAddBinding
 import com.example.studentapp.domain.Student
-import com.example.studentapp.utils.MAIN
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class AddFragment : Fragment() {
+class AddFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var viewModel: AddViewModel
@@ -26,71 +23,47 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(this)[AddViewModel::class.java]
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupStatusField()
-        viewModel = ViewModelProvider(this)[AddViewModel::class.java]
+        setupUI()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setupStatusField()
-    }
+    private fun setupUI(){
+        binding.includeLayout.apply {
 
-
-    override fun onStart() {
-        super.onStart()
-
-        viewModel.initDb()
-
-        var statusId = 0
-
-        binding.contentContainer.apply {
-
-            statusAc.setOnItemClickListener { adapterView, view, i, l ->
-                statusId = i
-            }
-
-            binding.toolbarAdd.setOnMenuItemClickListener {
-                if(it.itemId == R.id.item_done){
-                    val surname = surnameEt.text.toString()
-                    val name = nameEt.text.toString()
-                    if(checkInputs(surname, name)){
-                        val student = Student(surname = surname, name = name, status = statusId)
+            binding.btnAdd.setOnClickListener{
+                val surname = surnameEt.text.toString()
+                val name = nameEt.text.toString()
+                if(checkInputs(surname, name)){
+                    val student = Student(surname = surname, name = name,
+                        status = resources.getStringArray(R.array.status)[0])
+                    try {
                         viewModel.addStudent(student)
-                        findNavController().popBackStack()
-                    } else{
-                        Toast.makeText(requireContext(), getString(R.string.error_text_fields),
+                        Toast.makeText(requireContext(), getString(R.string.student_add),
                             Toast.LENGTH_SHORT).show()
+                    } catch (e:Exception){
+                        Log.e(TAG, e.message.toString())
+                    } finally {
+                        dismiss()
                     }
-
+                } else{
+                    if(surname.isEmpty()) surnameEt.error = resources.getString(R.string.error_text_fields)
+                    else nameEt.error = resources.getString(R.string.error_text_fields)
                 }
-                true
             }
         }
-
-        MAIN.onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-            }
-
-        })
-
-    }
-
-    private fun setupStatusField(){
-        val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,
-            resources.getStringArray(R.array.status))
-        binding.contentContainer.statusAc.setAdapter(adapter)
     }
 
     private fun checkInputs(surname: String, name: String) : Boolean{
         return surname.isNotBlank() && name.isNotBlank()
     }
 
+    companion object{
+        const val TAG = "Tag"
+    }
 
 }

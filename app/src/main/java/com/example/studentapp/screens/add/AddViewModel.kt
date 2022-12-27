@@ -10,11 +10,10 @@ import com.example.studentapp.domain.repository.StudentRepositoryImpl
 import kotlinx.coroutines.launch
 
 class AddViewModel(application: Application) : AndroidViewModel(application) {
-
     private val context = application
-    private lateinit var repository: StudentRepository
+    private var repository: StudentRepository
 
-    fun initDb(){
+    init {
         val dao = StudentDatabase.getInstance(context).getDao()
         repository = StudentRepositoryImpl(dao)
     }
