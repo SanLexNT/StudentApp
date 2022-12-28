@@ -35,7 +35,7 @@ class AddFragment : BottomSheetDialogFragment() {
     private fun setupUI(){
         binding.includeLayout.apply {
 
-            binding.btnAdd.setOnClickListener{
+            binding.imAdd.setOnClickListener{
                 val surname = surnameEt.text.toString()
                 val name = nameEt.text.toString()
                 if(checkInputs(surname, name)){

@@ -46,9 +46,9 @@ class EditFragment : BottomSheetDialogFragment() {
             surnameEt.setText(student.surname)
             nameEt.setText(student.name)
 
-            binding.btnSave.setOnClickListener {
+            binding.imSave.setOnClickListener {
                 val surname = surnameEt.text.toString()
-                val name = nameEt.toString()
+                val name = nameEt.text.toString()
                 if (checkInputs(surname, name)) {
                     student.surname = surname
                     student.name = name
